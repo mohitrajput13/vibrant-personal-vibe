@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Moon, Sun, Menu, X, Github, Linkedin, Mail, Phone, Download, ExternalLink, Code, Database, Globe, Smartphone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -72,10 +71,30 @@ const Index = () => {
   };
 
   const skills = {
-    frontend: ["React.js", "JavaScript", "TypeScript", "HTML", "CSS", "Bootstrap", "Tailwind CSS", "Material UI", "Ant Design"],
-    backend: ["Node.js", "Express.js", "RESTful APIs", "Webhooks"],
-    databases: ["MongoDB", "MySQL"],
-    tools: ["Postman", "GitHub", "Vapi.ai", "Redux"]
+    frontend: [
+      { name: "React.js", url: "https://reactjs.org/" },
+      { name: "JavaScript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+      { name: "TypeScript", url: "https://www.typescriptlang.org/" },
+      { name: "HTML", url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+      { name: "CSS", url: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+      { name: "Bootstrap", url: "https://getbootstrap.com/" }
+    ],
+    backend: [
+      { name: "Node.js", url: "https://nodejs.org/" },
+      { name: "Express.js", url: "https://expressjs.com/" },
+      { name: "RESTful APIs", url: "https://restfulapi.net/" },
+      { name: "Webhooks", url: "https://en.wikipedia.org/wiki/Webhook" }
+    ],
+    databases: [
+      { name: "MongoDB", url: "https://www.mongodb.com/" },
+      { name: "MySQL", url: "https://www.mysql.com/" }
+    ],
+    tools: [
+      { name: "Postman", url: "https://www.postman.com/" },
+      { name: "GitHub", url: "https://github.com/" },
+      { name: "Vapi.ai", url: "https://vapi.ai/" },
+      { name: "Redux", url: "https://redux.js.org/" }
+    ]
   };
 
   const projects = [
@@ -386,7 +405,7 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Frontend", icon: Globe, skills: skills.frontend.slice(0, 6), color: "blue", bgColor: "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20" },
+              { title: "Frontend", icon: Globe, skills: skills.frontend, color: "blue", bgColor: "from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20" },
               { title: "Backend", icon: Code, skills: skills.backend, color: "green", bgColor: "from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20" },
               { title: "Databases", icon: Database, skills: skills.databases, color: "purple", bgColor: "from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20" },
               { title: "Tools", icon: Smartphone, skills: skills.tools, color: "orange", bgColor: "from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20" }
@@ -402,13 +421,16 @@ const Index = () => {
                 <h3 className="font-semibold text-lg mb-4 text-gray-900 dark:text-white">{title}</h3>
                 <div className="space-y-2">
                   {skillList.map((skill, skillIndex) => (
-                    <div 
-                      key={skill} 
-                      className={`bg-white dark:bg-gray-700 px-3 py-1 rounded-full text-sm hover:shadow-md transition-all duration-300 hover:scale-105 transform animate-fade-in`}
+                    <a
+                      key={skill.name}
+                      href={skill.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`block bg-white dark:bg-gray-700 px-3 py-2 rounded-full text-sm hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-${color}-50 dark:hover:bg-${color}-900/30 hover:text-${color}-700 dark:hover:text-${color}-300 transform cursor-pointer animate-fade-in`}
                       style={{ animationDelay: `${index * 0.2 + skillIndex * 0.1}s` }}
                     >
-                      {skill}
-                    </div>
+                      {skill.name}
+                    </a>
                   ))}
                 </div>
               </Card>
